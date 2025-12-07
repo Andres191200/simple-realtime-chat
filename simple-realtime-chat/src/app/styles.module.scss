@@ -1,0 +1,21 @@
+.homePage {
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createRoomContainer {
+    @import "./shared/mixins.scss";
+    @include flex(column, center, center);
+  height: 450px;
+  width: 800px;
+  background-color: var(--bg);
+  border-radius: var(--border-radius-sm);
+  
+}
+
+.createRoomText{
+    text-align: center;
+}
