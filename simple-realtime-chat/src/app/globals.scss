@@ -1,0 +1,146 @@
+:root{
+    --bg-dark: oklch(0.1 0 337);
+    --bg: oklch(0.15 0 337);
+    --bg-light: oklch(0.2 0 337);
+    --text: oklch(0.96 0 337);
+    --text-muted: oklch(0.76 0 337);
+    --highlight: oklch(0.5 0 337);
+    --border: oklch(0.4 0 337);
+    --border-muted: oklch(0.3 0 337);
+    --primary: oklch(0.76 0.1 337);
+
+    --secondary: oklch(0.76 0.1 157);
+    --secondary-text: oklch(0.26 0.1 157);
+
+
+    --danger: oklch(39.371% 0.12657 25.124);
+    --danger-20: oklch(47.074% 0.13667 23.984 / 0.2);
+    --danger-text: hsl(0, 59%, 60%);
+    --danger-text-focus: hsl(0, 79%, 60%);
+
+
+    --warning: oklch(0.7 0.05 100);
+    --success: oklch(0.7 0.05 160);
+    --info: oklch(0.7 0.05 260);
+
+    --border-radius-sm: .5rem;
+    --border-radius-tiny: .25rem;
+
+    --border-radius-md: 1rem;
+    --border-radius-lg: 1.5rem;
+
+    --spacing-sm: .5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+
+}
+
+*{
+    font-family: var(--font-jetbrains-mono) !important;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+button{
+    background-color: var(--secondary);
+    color:var(--secondary-text) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-tiny);
+    cursor: pointer;
+    transition: filter 250ms ease-out;
+    font-size: clamp(1.1rem, 5vw, 1.2rem);
+
+    &:hover{
+        filter:brightness(1.1);
+    }
+}
+
+input{
+    background-color: var(--bg-light);
+    border: none;
+    padding:var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+
+    &:disabled{
+        cursor: not-allowed;
+        color: var(--text-muted);
+    }
+
+    &:focus{
+        border: 1px solid var(--secondary);
+        outline: none;
+    }
+}
+
+p,span{
+    line-height: 150%;
+}
+
+h1,h2,h3,h4,h5,button,p,span, input{
+    color: var(--text);
+
+    &.bold{
+        font-weight: 800 !important;
+    }
+}
+
+h1{
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+h1{
+    font-size: clamp(1.8rem, 5vw, 3rem);
+}
+h3{
+    font-size: clamp(1.4rem, 5vw, 2.5rem);
+}
+h4{
+    font-size: clamp(1.2rem, 5vw, 2.2rem);
+}
+h5{
+    font-size: clamp(1.1rem, 5vw, 1.9rem);
+}

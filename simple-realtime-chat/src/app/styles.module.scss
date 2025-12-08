@@ -1,0 +1,52 @@
+@import "./shared/mixins.scss";
+
+.homePage {
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 5rem;
+}
+
+.createRoomContainer {
+  @include flex(column, space-between, center);
+  padding: var(--spacing-lg);
+  height: 200px;
+  width: min(60vw, 750px);
+  background-color: var(--bg);
+  border-radius: var(--border-radius-sm);
+  button {
+    width: 100%;
+  }
+  h5{
+    display: inline !important;
+  }
+
+    .username{
+    color:var(--success);
+  }
+}
+
+.createRoomText {
+  text-align: center;
+}
+
+.usernameContainer {
+  @include flex(row, center, center);
+  gap: var(--spacing-sm);
+}
+
+.createRoomWarningMessageBox {
+  padding: var(--spacing-md);
+  background-color: var(--danger-20);
+  border-radius: var(--border-radius-sm);
+
+  span {
+    color: var(--danger-text);
+
+    &.bold {
+      color: var(--danger-text-focus);
+    }
+  }
+}
