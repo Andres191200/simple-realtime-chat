@@ -13,7 +13,7 @@
   @include flex(column, space-between, center);
   padding: var(--spacing-lg);
   height: 200px;
-  width: min(60vw, 750px);
+  width: min(60vw, 650px);
   background-color: var(--bg);
   border-radius: var(--border-radius-sm);
   button {
