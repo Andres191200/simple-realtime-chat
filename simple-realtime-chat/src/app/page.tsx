@@ -1,5 +1,10 @@
+"use client";
+import useLocalStorage from "./shared/hooks/useLocalStorage";
 import styles from "./styles.module.scss";
+
 export default function Home() {
+  const { setItem, getItem } = useLocalStorage();
+
   return (
     <div className={styles.homePage}>
       <section>
