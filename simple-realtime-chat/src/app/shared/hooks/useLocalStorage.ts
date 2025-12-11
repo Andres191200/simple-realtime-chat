@@ -9,10 +9,10 @@ export default function useLocalStorage<T>() {
     }
   }
 
-  function getItem(key: string, initialValue: TLocalStorageValue):TLocalStorageValue | null {
+  function getItem(key: string):TLocalStorageValue | null {
     try {
       const item = localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+      return item ? JSON.parse(item) : null;
     } catch (error) {
       console.error(error);
       return null;
