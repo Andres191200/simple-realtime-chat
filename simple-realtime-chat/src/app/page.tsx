@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import useLocalStorage from "./shared/hooks/useLocalStorage";
 import styles from "./styles.module.scss";
+import { generateUniqueUsername } from "./shared/utils/user";
 
 const USERNAME_KEY = "username" as const;
 
@@ -14,7 +15,7 @@ export default function Home() {
       const userName = getItem(USERNAME_KEY);
       if (!userName) {
         // ASSIGN RANDOM NAME WITH UUID
-        const username = "anonymous-walrus-2-e3c20s";
+        const username = generateUniqueUsername();
         setItem(USERNAME_KEY, username);
         setUserName(username);
       } else {
@@ -22,7 +23,7 @@ export default function Home() {
       }
     }
     setInitialUserName();
-  }, []);
+  }, [getItem, setItem]);
 
   return (
     <div className={styles.homePage}>
