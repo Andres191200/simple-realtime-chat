@@ -6,6 +6,7 @@ import { generateUniqueUsername } from "./shared/utils/user";
 import { useMutation } from "@tanstack/react-query";
 import { edenClient } from "@/lib/eden-client";
 
+
 const USERNAME_KEY = "username" as const;
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
   const [userName, setUserName] = useState<string>("");
   const { mutate: createRoom } = useMutation({mutationFn: async () => {
     const res = await edenClient.rooms.create.post();
+    
   }});
 
   useEffect(() => {
