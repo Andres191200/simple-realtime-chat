@@ -1,6 +1,6 @@
 type TLocalStorageValue = number | string | boolean | object;
 
-export default function useLocalStorage<T>() {
+export default function useLocalStorage() {
   function setItem(key: string, value: TLocalStorageValue) {
     try {
       localStorage.setItem(key, JSON.stringify(value));

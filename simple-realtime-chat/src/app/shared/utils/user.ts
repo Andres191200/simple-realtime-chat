@@ -6,6 +6,7 @@ function generateUniqueUsername():string{
     const randomNumber = Math.floor(Math.random() * 999001) + 1000;
 
     return `anonymous-${randomAnimal}-${randomNumber}`;
+    
 }
 
 export {generateUniqueUsername}
