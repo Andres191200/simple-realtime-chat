@@ -11,7 +11,7 @@ const USERNAME_KEY = "username" as const;
 export default function Home() {
   const { setItem, getItem } = useLocalStorage();
   const [userName, setUserName] = useState<string>("");
-  const {} = useMutation({mutationFn: async () => {
+  const { mutate: createRoom } = useMutation({mutationFn: async () => {
     const res = await edenClient.rooms.create.post();
   }});
 
@@ -19,7 +19,6 @@ export default function Home() {
     function setInitialUserName() {
       const userName = getItem(USERNAME_KEY);
       if (!userName) {
-        // ASSIGN RANDOM NAME WITH UUID
         const username = generateUniqueUsername();
         setItem(USERNAME_KEY, username);
         setUserName(username);
@@ -44,7 +43,7 @@ export default function Home() {
               <span className={`bold ${styles.bold}`}>after 10 minutes</span>
             </span>
           </div>
-          <button type="button">Create room</button>
+          <button type="button" onClick={() => {createRoom()}}>Create room</button>
         </div>
       </section>
     </div>
