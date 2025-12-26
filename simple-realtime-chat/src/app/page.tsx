@@ -5,15 +5,21 @@ import styles from "./styles.module.scss";
 import { generateUniqueUsername } from "./shared/utils/user";
 import { useMutation } from "@tanstack/react-query";
 import { edenClient } from "@/lib/eden-client";
+import { useRouter } from "next/navigation";
 
 const USERNAME_KEY = "username" as const;
 
 export default function Home() {
   const { setItem, getItem } = useLocalStorage();
   const [userName, setUserName] = useState<string>("");
-  const { mutate: createRoom } = useMutation({
+  const router = useRouter();
+  const { mutate: createRoom, isPending } = useMutation({
     mutationFn: async () => {
       const res = await edenClient.rooms.create.post();
+
+      if(res.status === 200){
+        router.push(`/room/${res.data?.roomId}`);
+      }
     },
   });
 
@@ -51,7 +57,8 @@ export default function Home() {
               createRoom();
             }}
           >
-            Create room
+            {/* TODO: DISABLE BUTTON WHEN IS LOADING */}
+            {isPending ? 'Creating...'  : 'Create room'}
           </button>
         </div>
       </section>
