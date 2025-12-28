@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.scss";
 import { Providers } from "./shared/components/providers";
+import { Toaster } from "react-hot-toast";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${jetbrainsMono.variable}`}>
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );
