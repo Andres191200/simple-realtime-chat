@@ -6,6 +6,7 @@ import { generateUniqueUsername } from "./shared/utils/user";
 import { useMutation } from "@tanstack/react-query";
 import { edenClient } from "@/lib/eden-client";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const USERNAME_KEY = "username" as const;
 
@@ -18,6 +19,7 @@ export default function Home() {
       const res = await edenClient.rooms.create.post();
 
       if(res.status === 200){
+        toast.success("Room created successfully");
         router.push(`/room/${res.data?.roomId}`);
       }
     },
@@ -44,6 +46,9 @@ export default function Home() {
           <div>
             <h5 className={styles.createRoomText}>Welcome </h5>
             <h5 className={styles.username}>{userName}</h5>
+          </div>
+          <div>
+            <span className={styles.createRoomDescription}>To an anonymous 10-minute chat</span>
           </div>
           <div className={styles.createRoomWarningMessageBox}>
             <span>
