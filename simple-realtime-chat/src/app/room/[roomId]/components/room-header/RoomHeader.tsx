@@ -14,28 +14,35 @@ function copyRoomId() {
   toast.success("Room ID copied to clipboard");
 }
 
+function formatTime(seconds: number) {
+  const minutes = Math.floor(seconds / 60);
+  const formattedTime = `${minutes.toString().padStart(2, "0")}:${(seconds%60)
+    .toString()
+    .padStart(2, "0")}`;
+  return formattedTime;
+}
+
 export default function RoomHeader() {
   const params: TUrlParams = useParams();
   const roomId = params.roomId;
-  const [timerRef, setTimerRef] = useState(600)
+  const [timer, setTimer] = useState(600);
 
   useEffect(() => {
-    // create a timer from 10 minutes to 0
     const timer = setInterval(() => {
-        setTimerRef((prev) => {
-            if(prev === 0) {
-                clearInterval(timer);
-                return 0;
-            }
-            return prev - 1;
-        })
+      setTimer((prev) => {
+        if (prev === 0) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
     }, 1000);
-  
+
     return () => {
       clearInterval(timer);
     };
-  })
-  
+  });
+
   return (
     <div className={styles.roomHeaderComponent}>
       <section className={styles.roomInfo}>
@@ -46,7 +53,9 @@ export default function RoomHeader() {
         <button onClick={copyRoomId}>copy</button>
       </section>
       <section className={styles.roomTimer}>
-        <span  className={`${styles.remaininTime}`}>Remaining time: {timerRef}</span>
+        <span className={`${styles.remaininTime}`}>
+          Remaining time {formatTime(timer)}
+        </span>
       </section>
     </div>
   );
