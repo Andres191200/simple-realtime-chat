@@ -2,7 +2,10 @@
 import toast from "react-hot-toast";
 import styles from "./styles.module.scss";
 import { useParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+
+const ROOM_TTL_SECONDS = 600;
+const WARNING_THRESHOLD_SECONDS = 180;
 
 type TUrlParams = {
   roomId: string;
@@ -25,7 +28,7 @@ function formatTime(seconds: number) {
 export default function RoomHeader() {
   const params: TUrlParams = useParams();
   const roomId = params.roomId;
-  const [timer, setTimer] = useState(600);
+  const [timer, setTimer] = useState(ROOM_TTL_SECONDS);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -53,9 +56,10 @@ export default function RoomHeader() {
         <button onClick={copyRoomId}>copy</button>
       </section>
       <section className={styles.roomTimer}>
-        <span className={`${styles.remaininTime}`}>
-          Remaining time {formatTime(timer)}
+        <span className={`${styles.remainingTime} ${timer <= WARNING_THRESHOLD_SECONDS ? styles.warning : ""}`}>
+          SELF DESTRUCT: {formatTime(timer)}
         </span>
+        <button className={styles.destroyButton} onClick={() => {}}>DESTROY NOW</button>
       </section>
     </div>
   );
