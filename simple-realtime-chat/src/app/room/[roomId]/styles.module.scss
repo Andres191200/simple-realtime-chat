@@ -1,6 +1,11 @@
 .roomPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: var(--bg);
+    box-sizing: border-box;
     height: 100dvh;
     width: 100dvw;
 }
+
 
