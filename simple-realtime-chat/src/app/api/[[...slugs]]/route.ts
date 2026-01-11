@@ -11,6 +11,7 @@ const createRoom = new Elysia({ prefix: "/rooms" }).post(
 
     redis.hset(`meta-${roomId}`, {
       connected: [],
+      createdAt: Date.now(),
     });
 
     await redis.expire(`meta-${roomId}`, ROOM_TTL_SECONDS);
