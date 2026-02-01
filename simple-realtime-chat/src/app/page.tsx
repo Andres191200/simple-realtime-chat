@@ -22,6 +22,9 @@ export default function Home() {
         toast.success("Room created successfully");
         router.push(`/room/${res.data?.roomId}`);
       }
+      else{
+        toast.error('Error creating a room');
+      }
     },
   });
 
