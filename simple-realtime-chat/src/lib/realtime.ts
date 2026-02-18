@@ -6,7 +6,7 @@ import { SMessage as messageSchema, SMessageSent as messageSentSchema } from "./
 
 const schema = {
     chat: {
-        message: messageSchema.extend(messageSentSchema),
+        message: messageSchema.extend(messageSentSchema.shape),
         destroy: destroySchema
     }
 }

@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { authMiddleware } from "./auth";
 import z from "zod";
 import { SMessage as messageSchema, TMessage } from "../../../lib/schemas/event.message";
+import { realtime } from "../../../lib/realtime";
 
 const ROOM_TTL_SECONDS = 600;
 
@@ -27,7 +28,7 @@ const messages = new Elysia({ prefix: "/messages" }).use(authMiddleware).post(
   "/",
   async ({ body, auth }) => {
     const { sender, text } = body;
-    const roomId = auth.roomId;
+    const { roomId } = auth;
 
 
     const roomExists = await redis.exists(`meta-${roomId}`);
@@ -44,6 +45,11 @@ const messages = new Elysia({ prefix: "/messages" }).use(authMiddleware).post(
       roomId,
       token: auth.token
     }
+
+    await redis.rpush(`messages-${roomId}`, {...message, token: auth.token});
+    await realtime.channel(roomId).emit('chat.message', message);
+
+    return message;
 
   },
   {

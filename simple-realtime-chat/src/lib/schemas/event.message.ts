@@ -6,11 +6,12 @@ export const SMessage = z.object({
 });
 
 export const SMessageSent = z.object({
-            id: z.string(),
-            createdAt: z.number(),
-            roomId: z.string(),
-            token: z.string().optional()
-        })
+  id: z.string(),
+  createdAt: z.number(),
+  roomId: z.string(),
+  token: z.string().optional(),
+});
 
-export type TMessage = z.infer<typeof SMessage> & z.infer<typeof SMessageSent>;
+const messageType = SMessage.extend(SMessageSent.shape);
 
+export type TMessage = z.infer<typeof messageType>;
