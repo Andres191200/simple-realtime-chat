@@ -49,6 +49,11 @@ const messages = new Elysia({ prefix: "/messages" }).use(authMiddleware).post(
     await redis.rpush(`messages-${roomId}`, {...message, token: auth.token});
     await realtime.channel(roomId).emit('chat.message', message);
 
+    const remainingRoomTime = await redis.ttl(`meta-${roomId}`);
+    // await redis.expire(`history  -${roomId}`, remainingRoomTime);
+    await redis.expire(`messages-${roomId}`, remainingRoomTime);
+    await redis.expire(roomId, remainingRoomTime)
+
     return message;
 
   },

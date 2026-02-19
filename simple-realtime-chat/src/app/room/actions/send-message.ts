@@ -1,9 +1,21 @@
 "use server";
 
+import { edenClient } from "../../../lib/eden-client";
 
-function sendMessage(formData: FormData) {
-  const message = formData.get("message")?.toString();
-  console.log("Message sent:", message);
+type TSendMessage = {
+  username: string;
+  text: string;
+  roomId: string;
+};
+
+async function sendRoomMessage({ username, text, roomId }: TSendMessage) {
+  await edenClient.messages.post(
+    {
+      sender: username,
+      text: text,
+    },
+    { query: { roomId } },
+  );
 }
 
-export { sendMessage };
+export { sendRoomMessage };

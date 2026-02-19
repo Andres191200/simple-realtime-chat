@@ -16,6 +16,7 @@ export const authMiddleware = new Elysia({
     }
 }).derive({as: 'scoped'}, async({query, cookie}) => {
     const roomId = query.roomId;
+    console.dir(query, {depth: Infinity});
     const token = cookie['x-auth-token'].value as string | undefined;
 
     if(!roomId || !token){

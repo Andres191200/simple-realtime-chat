@@ -41,7 +41,6 @@ export const proxy = async (req: NextRequest) => {
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
   });
-  console.log('id: ', token);
   await redis.hset(`meta-${roomId}`, {
     connected: [...metaData.connected, token],
   });

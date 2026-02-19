@@ -1,15 +1,10 @@
 "use client";
 import toast from "react-hot-toast";
 import styles from "./styles.module.scss";
-import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRoom } from "../../context/RoomContext";
 
-const ROOM_TTL_SECONDS = 600;
 const WARNING_THRESHOLD_SECONDS = 180;
-
-type TUrlParams = {
-  roomId: string;
-};
 
 function copyRoomId() {
   const currentUrl = window.location.href;
@@ -26,9 +21,8 @@ function formatTime(seconds: number) {
 }
 
 export default function RoomHeader() {
-  const params: TUrlParams = useParams();
-  const roomId = params.roomId;
-  const [timer, setTimer] = useState(ROOM_TTL_SECONDS);
+  const { roomId, roomTtlSeconds } = useRoom();
+  const [timer, setTimer] = useState(roomTtlSeconds);
 
   useEffect(() => {
     const timer = setInterval(() => {
